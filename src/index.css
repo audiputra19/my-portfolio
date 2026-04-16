@@ -92,3 +92,56 @@ html {
   animation: scroll 25s linear infinite;
   will-change: transform;
 }
+
+/* Swiper Custom Navigation */
+.custom-swiper .swiper-button-next,
+.custom-swiper .swiper-button-prev {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    color: white;
+    opacity: 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.custom-swiper .swiper-button-next:after,
+.custom-swiper .swiper-button-prev:after {
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.group\/card:hover .custom-swiper .swiper-button-next,
+.group\/card:hover .custom-swiper .swiper-button-prev {
+    opacity: 1;
+}
+
+.custom-swiper .swiper-button-next:hover,
+.custom-swiper .swiper-button-prev:hover {
+    background-color: hsl(var(--wa)); /* Warna warning dari DaisyUI */
+    color: hsl(var(--p)); /* Warna primary */
+    transform: scale(1.1);
+}
+
+/* Custom Pagination */
+.custom-swiper .swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.custom-swiper .swiper-pagination-bullet-active {
+    background: hsl(var(--wa)) !important;
+    width: 24px;
+    border-radius: 5px;
+}
+
+/* Smooth Line Clamp for Description */
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
 import Profile from '../assets/images/profile-picture.png'
+import { scrollToSection } from "../utils/scroll";
 
 const Home: FC = () => {
 
@@ -8,66 +9,97 @@ const Home: FC = () => {
         hidden: {},
         show: {
             transition: {
-                staggerChildren: 0.2
+                staggerChildren: 0.15
             }
         }
     };
 
     const item = {
-        hidden: { opacity: 0, y: 50 },
-        show: { opacity: 1, y: 0 }
+        hidden: { opacity: 0, x: -30 },
+        show: { 
+            opacity: 1, 
+            x: 0,
+            transition: { duration: 0.8, ease: [0.25, 1, 0.5, 1] as const }
+        }
     };
 
     return (
         <>
-            <section id="home" className="mt-5 pt-5 mx-10 sm:mx-20">
+            <section 
+                id="home" 
+                className="min-h-[85vh] flex items-center mt-5 pt-5 px-10 lg:px-20 overflow-hidden"
+            >
                 <motion.div 
-                    className="flex-col lg:flex lg:flex-row lg:justify-between items-center"
+                    className="flex-col lg:flex lg:flex-row lg:justify-between items-center w-full"
                     variants={container}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
                 >
-
-                    {/* MOBILE IMAGE */}
+                    {/* PROFILE IN MOBILE */}
                     <motion.div className="lg:hidden" variants={item}>
                         <div className="mb-10">
                             <img 
                                 src={Profile} 
-                                className="w-50 h-50 rounded-full object-cover object-top"
+                                className="w-48 h-48 rounded-full object-cover object-top border-4 
+                                    border-primary/20 shadow-2xl"
+                                alt="Profile"
                             />
                         </div>
                     </motion.div>
 
-                    {/* INTRODUCING */}
-                    <div className="w-full md:max-w-[500px]">
+                    {/* HEADER */}
+                    <div className="w-full lg:max-w-[600px]">
                         <div>
+                            <motion.div 
+                                variants={item} 
+                                className="mb-6 inline-flex items-center gap-2 px-3 py-1 rounded-full 
+                                    bg-primary/10 border border-primary/20"
+                            >
+                                <span className="relative flex h-2 w-2">
+                                    <span 
+                                        className="animate-ping absolute inline-flex h-full w-full 
+                                            rounded-full bg-warning opacity-75"
+                                    ></span>
+                                    <span 
+                                        className="relative inline-flex rounded-full h-2 w-2 bg-warning"
+                                    ></span>
+                                </span>
+                                <span 
+                                    className="text-[10px] font-black uppercase tracking-[0.2em] 
+                                        text-primary"
+                                >
+                                     Open for Projects
+                                </span>
+                            </motion.div>
 
                             <motion.h1 
                                 variants={item}
-                                transition={{ duration: 0.6 }}
-                                className="text-5xl font-bold"
+                                className="text-5xl md:text-7xl font-black leading-[1.1]"
                             >
-                                Hey!, I am 
-                                <span className="text-primary"> Audi Putra</span>
+                                Hey!, I am <br />
+                                <span 
+                                    className="text-transparent bg-clip-text bg-gradient-to-r 
+                                        from-primary to-blue-400"
+                                >
+                                    Audi Putra
+                                </span>
                             </motion.h1>
 
-                            <motion.h1 
+                            <motion.h2 
                                 variants={item}
-                                transition={{ duration: 0.6 }}
-                                className="text-5xl font-bold mt-3"
+                                className="text-3xl md:text-4xl font-bold mt-4 tracking-tight"
                             >
                                 Fullstack Developer
-                            </motion.h1>
+                            </motion.h2>
 
                             <motion.p 
                                 variants={item}
-                                transition={{ duration: 0.7 }}
-                                className="mt-5 text-gray-500"
+                                className="mt-6 text-gray-400 text-lg leading-relaxed max-w-lg"
                             >
-                                A Fullstack Developer experienced in building web applications, 
-                                dashboards, and business systems with a focus on efficiency 
-                                and scalability. I love turning complex problems into simple solutions
+                                Experienced in building high-performance web applications, 
+                                interactive dashboards, and scalable business systems. 
+                                I love turning complex problems into simple, elegant solutions.
                             </motion.p>
 
                             <motion.div 
@@ -75,22 +107,31 @@ const Home: FC = () => {
                                 transition={{ duration: 0.8 }}
                                 className="pt-10 flex gap-3"
                             >
-                                <button className="btn btn-primary">Contact Me</button>
-                                <button className="btn btn-outline btn-primary">Download CV</button>
+                                <button 
+                                    onClick={() => scrollToSection("contact")}
+                                    className="btn btn-primary transition-all duration-300 hover:scale-105"
+                                >
+                                    Contact Me
+                                </button>
+                                <button 
+                                    className="btn btn-outline btn-primary transition-all 
+                                        duration-300 hover:scale-105"
+                                >
+                                    Download CV
+                                </button>
                             </motion.div>
-
                         </div>
                     </div>
 
-                    {/* BACKGROUND SHAPE & IMAGE */}
+                    {/* BACKGROUND & PROFILE */}
                     <motion.div 
                         className="hidden lg:block relative w-[300px] h-[500px]"
                         variants={item}
                         transition={{ duration: 0.8 }}
                     >
                         <div 
-                            className="absolute w-30 h-30 border-4 border-dashed border-warning top-70 right-130 rounded-full 
-                            flex items-center justify-center"
+                            className="absolute w-30 h-30 border-4 border-dashed border-warning top-70 
+                                right-130 rounded-full flex items-center justify-center"
                         >
                             <div className="w-20 h-20 border-4 border-warning rounded-full"></div>
                         </div>
@@ -100,8 +141,8 @@ const Home: FC = () => {
                         <div className="absolute w-20 h-20 bg-warning top-10 right-100 rounded-full"></div>
 
                         <div 
-                            className="absolute w-20 h-20 border-2 border-warning top-20 right-10 rounded-full 
-                            flex items-center justify-center"
+                            className="absolute w-20 h-20 border-2 border-warning top-20 right-10 
+                                rounded-full flex items-center justify-center"
                         >
                             <div className="w-15 h-15 bg-warning rounded-full"></div>
                         </div>

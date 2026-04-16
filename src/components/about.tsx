@@ -6,23 +6,23 @@ import { SiTypescript, SiMysql, SiRedux, SiSocketdotio, SiTailwindcss, SiExpress
 
 const About: FC = () => {
 
-    const container = {
-        hidden: {},
-        show: {
-            transition: {
-                staggerChildren: 0.15
-            }
-        }
-    };
-
     const item = {
-        hidden: { opacity: 0, y: 60 },
+        hidden: { opacity: 0, y: 30 },
         show: { 
             opacity: 1, 
             y: 0,
             transition: {
-                duration: 0.7,
-                ease: [0.22, 1, 0.36, 1] as const
+                duration: 0.5,
+                ease: [0.25, 1, 0.5, 1] as const,
+            }
+        }
+    };
+
+    const container = {
+        hidden: {},
+        show: {
+            transition: {
+                staggerChildren: 0.1
             }
         }
     };
@@ -83,9 +83,9 @@ const About: FC = () => {
         <>
             <section 
                 id="about" 
-                className="relative mt-10 lg:mt-35 bg-base-100"
+                className="relative mt-10 lg:mt-35 bg-base-100 overflow-hidden"
             >
-                <div className="py-10 px-10 sm:px-20">
+                <div className="py-24 px-10 sm:px-20">
 
                     {/* BACKGROUND */}
                     <motion.div 
@@ -96,20 +96,20 @@ const About: FC = () => {
                         viewport={{ once: true }}
                     >
                         <div className="absolute w-100 h-100 bg-warning left-[-100px] rounded-full"></div>
-                        <div className="absolute w-20 h-20 border-4 border-warning top-[12px] left-[465px] rounded-full"></div>
-                        <div className="absolute w-80 h-80 border-4 border-dashed border-warning top-[400px] right-[100px] rounded-full 
-                            flex justify-center items-center">
+                        <div 
+                            className="absolute w-20 h-20 border-4 border-warning top-[12px] left-[465px] 
+                                rounded-full"
+                        ></div>
+                        <div 
+                            className="absolute w-80 h-80 border-4 border-dashed border-warning 
+                                top-[400px] right-[100px] rounded-full flex justify-center items-center"
+                        >
                             <div className="w-60 h-60 border-4 border-dashed border-warning rounded-full"></div>
                         </div>
                         <div className="absolute grid grid-cols-4 gap-4 top-[300px] right-[-40px]">
-                            <div className="w-4 h-4 bg-warning rounded-full"></div>
-                            <div className="w-4 h-4 bg-warning rounded-full"></div>
-                            <div className="w-4 h-4 bg-warning rounded-full"></div>
-                            <div className="w-4 h-4 bg-warning rounded-full"></div>
-                            <div className="w-4 h-4 bg-warning rounded-full"></div>
-                            <div className="w-4 h-4 bg-warning rounded-full"></div>
-                            <div className="w-4 h-4 bg-warning rounded-full"></div>
-                            <div className="w-4 h-4 bg-warning rounded-full"></div>
+                            {[...Array(8)].map((_, i) => (
+                                <div key={i} className="w-4 h-4 bg-warning rounded-full"></div>
+                            ))}
                         </div>
                     </motion.div>
 
@@ -119,37 +119,27 @@ const About: FC = () => {
                         variants={container}
                         initial="hidden"
                         whileInView="show"
-                        viewport={{ once: true }}
+                        viewport={{ once: true, amount: 0.2 }}
                     >
                         <motion.div 
                             className="hidden lg:block w-[600px] flex justify-center items-center z-10"
                             variants={item}
                         >
-                            <img 
-                                src={Laptop}
-                                className="w-[600px]"
-                            />
+                            <img src={Laptop} className="w-[600px]" alt="Laptop" />
                         </motion.div>
 
                         <div className="flex-1 w-full md:max-w-[600px]">
-                            <motion.h1 
-                                variants={item}
-                                className="text-4xl font-bold"
-                            >
-                                About
-                            </motion.h1>
-
-                            <motion.div 
-                                variants={item}
-                                className="mt-5 flex flex-col gap-3"
-                            >
+                            <motion.h1 variants={item} className="text-4xl font-black">About</motion.h1>
+                            <motion.div variants={item} className="mt-5 flex flex-col gap-3">
                                 <p className="text-gray-500">
-                                    I am a Fullstack Developer with experience in building web applications from front-end to back-end.
-                                    I have worked on various projects such as interactive web applications, dashboards, cashier systems, and attendance systems.
+                                    I am a Fullstack Developer with experience in building web 
+                                    applications from front-end to back-end. I have worked on various 
+                                    projects such as interactive web applications, dashboards, 
+                                    cashier systems, and attendance systems.
                                 </p>
                                 <p className="text-gray-500">
-                                    I enjoy solving complex problems and turning them into simple, efficient, and scalable solutions.
-                                    I am passionate about learning new technologies and continuously improving my skills.
+                                    I enjoy solving complex problems and turning them into simple, 
+                                    efficient, and scalable solutions.
                                 </p>
                             </motion.div>
                         </div>
@@ -161,72 +151,86 @@ const About: FC = () => {
                         variants={container}
                         initial="hidden"
                         whileInView="show"
-                        viewport={{ once: true }}
+                        viewport={{ once: true, amount: 0.2 }}
                     >
-                        <motion.h1 
-                            variants={item}
-                            className="text-3xl font-bold"
+                        <motion.h2 
+                            variants={item} 
+                            className="text-3xl font-black flex items-center gap-4"
                         >
-                            Skills & Technologies
-                        </motion.h1>
+                            Skills & Tech
+                            <div className="h-1 w-20 bg-primary rounded-full opacity-50"></div>
+                        </motion.h2>
 
-                        {/* SKILLS */}
                         <div className="mt-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                             {skills.map((skill) => (
                                 <motion.div 
                                     key={skill.title}
                                     variants={item}
-                                    className="border border-base-300 shadow bg-base-200 p-5 rounded-xl
-                                        flex flex-col gap-2 w-full"
+                                    className="border border-base-300 shadow bg-base-200 p-5 rounded-xl 
+                                        flex flex-col gap-2 w-full group/item cursor-default 
+                                        transition-all duration-500 hover:border-primary/50 
+                                        hover:shadow-[0_0_20px_rgba(59,130,246,0.15)]"
                                 >
-                                    <div className="mb-3 bg-primary text-white flex justify-center items-center w-15 h-15 rounded-full mx-auto">
+                                    <div 
+                                        className="mb-3 bg-primary text-white flex justify-center 
+                                            items-center w-15 h-15 rounded-full mx-auto transition-all 
+                                            duration-500 group-hover/item:scale-110"
+                                    >
                                         {skill.icon}
                                     </div>
-                                    <p className="font-medium text-center text-lg">{skill.title}</p>
-                                    <p className="text-center text-sm text-gray-500">{skill.desc}</p>
+                                    <p className="font-bold text-center text-lg">{skill.title}</p>
+                                    <p className="text-center text-sm text-gray-400">{skill.desc}</p>
                                 </motion.div>
                             ))}
                         </div>
 
                         {/* TECHNOLOGIES */}
-                        <motion.div 
-                            className="mt-10"
-                            variants={item}
-                        >
-                            <div className="mt-10 overflow-hidden">
-                                <div className="flex w-max animate-scroll py-2 gap-6">
+                        <motion.div className="mt-10" variants={item}>
+                            <div className="relative mt-10 overflow-hidden">
+                                <div 
+                                    className="absolute inset-y-0 left-0 w-5 bg-gradient-to-r 
+                                        from-base-100 to-transparent z-10 pointer-events-none"
+                                ></div>
+                                <div 
+                                    className="absolute inset-y-0 right-0 w-15 bg-gradient-to-l 
+                                        from-base-100 to-transparent z-10 pointer-events-none"
+                                ></div>
 
+                                <div className="flex w-max animate-scroll py-2 gap-6">
                                     <div className="flex gap-6">
                                         {technologies.map((tech, i) => (
-                                            <motion.div
-                                                key={i}
-                                                variants={item}
-                                                className="flex items-center gap-3 border border-base-300 shadow bg-base-200 px-5 py-3 rounded-full whitespace-nowrap"
-                                            >
-                                                <span className="text-2xl">
-                                                    {tech.icon}
-                                                </span>
-                                                <span className="text-sm font-medium">
-                                                    {tech.name}
-                                                </span>
-                                            </motion.div>
+                                            <div 
+                                                key={i} 
+                                                className="flex items-center gap-3 border border-base-300 
+                                                    shadow bg-base-200 px-7 py-4 rounded-full 
+                                                    whitespace-nowrap group/item cursor-default 
+                                                    transition-all duration-500 hover:border-primary/50 
+                                                    hover:shadow-[0_0_20px_rgba(59,130,246,0.15)]"
+                                                >
+                                                <span className="text-2xl transition-transform duration-500 group-hover/item:scale-125 group-hover/item:rotate-12">{tech.icon}</span>
+                                                <span className="text-sm font-medium">{tech.name}</span>
+                                            </div>
                                         ))}
                                     </div>
-
                                     <div className="flex gap-6">
                                         {technologies.map((tech, i) => (
-                                            <motion.div
-                                                key={`dup-${i}`}
-                                                variants={item}
-                                                className="flex items-center gap-3 border border-base-300 shadow bg-base-200 px-5 py-3 rounded-full whitespace-nowrap"
-                                            >
-                                                <span className="text-2xl">
+                                            <div 
+                                                key={`dup-${i}`} 
+                                                className="flex items-center gap-3 border border-base-300 
+                                                    shadow bg-base-200 px-7 py-4 rounded-full 
+                                                    whitespace-nowrap group/item cursor-default 
+                                                    transition-all duration-500 hover:border-primary/50 
+                                                    hover:shadow-[0_0_20px_rgba(59,130,246,0.15)]"
+                                                >
+                                                <span 
+                                                    className="text-2xl transition-transform duration-500 
+                                                        group-hover/item:scale-125 
+                                                        group-hover/item:rotate-12"
+                                                >
                                                     {tech.icon}
                                                 </span>
-                                                <span className="text-sm font-medium">
-                                                    {tech.name}
-                                                </span>
-                                            </motion.div>
+                                                <span className="text-sm font-medium">{tech.name}</span>
+                                            </div>
                                         ))}
                                     </div>
                                 </div>
@@ -236,43 +240,77 @@ const About: FC = () => {
 
                     {/* EXPERIENCE */}
                     <motion.div
-                        className="relative z-10 mt-10 mt-10"
+                        className="relative z-10 mt-20"
                         variants={container}
                         initial="hidden"
                         whileInView="show"
-                        viewport={{ once: true }}
+                        viewport={{ once: true, amount: 0.1 }}
                     >
-                        <motion.h1 
-                            variants={item}
-                            className="text-3xl font-bold"
-                        >
-                            Experience
-                        </motion.h1>
-                        <div className="mt-5">
-                            <div
-                                className="flex gap-10"
-                            >
-                                <motion.div 
-                                    variants={item}
-                                    className="flex justify-center items-center w-18 h-18 bg-primary 
-                                    text-white font-bold rounded-full"
-                                >
-                                    2026
-                                </motion.div>
-                                <motion.div 
-                                    variants={item}
-                                    className="flex-1 p-5 border border-base-300 shadow bg-base-200 rounded-xl"
-                                >
-                                    <p className="font-medium text-lg">Web Programmer</p>
-                                    <p className="font-medium mt-2">2018 - 2026</p>
-                                    <p className="font-medium text-primary mt-2">PT. SARANDI KARYA NUGRAHA</p>
-                                    <p className="text-sm text-gray-500 mt-3">
-                                        I am responsible for developing, maintaining, and troubleshooting 
-                                        web applications using PHP, HTML, and MySQL. I focus on building 
-                                        stable and efficient systems, ensuring smooth functionality, 
-                                        and resolving issues to improve application performance.
-                                    </p>
-                                </motion.div>
+                        <motion.div variants={item} className="flex flex-col mb-12">
+                            <h2 className="text-3xl font-black flex items-center gap-4">
+                                Experience
+                                <div className="h-1 w-20 bg-primary rounded-full opacity-50"></div>
+                            </h2>
+                        </motion.div>
+
+                        <div className="relative mt-10">
+                            <div 
+                                className="absolute left-9 top-0 bottom-0 w-0.5 bg-gradient-to-b 
+                                    from-primary via-primary/20 to-transparent hidden md:block"
+                            ></div>
+
+                            <div className="space-y-12">
+                                <div className="flex flex-col md:flex-row gap-6 md:gap-12 relative">
+                                    <motion.div 
+                                        variants={item}
+                                        className="relative z-10 flex flex-none justify-center 
+                                            items-center w-18 h-18 bg-[#1e293b] border-3 border-primary 
+                                            text-primary font-black rounded-2xl 
+                                            shadow-[0_0_20px_rgba(59,130,246,0.2)] 
+                                            transform rotate-3"
+                                    >
+                                        2026
+                                    </motion.div>
+
+                                    <motion.div 
+                                        variants={item}
+                                        className="flex-1 p-8 border border-base-300 shadow bg-base-200 
+                                            backdrop-blur-sm rounded-[2rem] relative overflow-hidden 
+                                            group hover:border-primary/40 transition-all duration-500 
+                                            cursor-default hover:shadow-[0_0_20px_rgba(59,130,246,0.15)]"
+                                    >
+                                        <div 
+                                            className="absolute -right-10 -top-10 w-32 h-32 
+                                                bg-primary/5 rounded-full blur-3xl"
+                                        ></div>
+                                        <div 
+                                            className="flex flex-col md:flex-row md:items-center 
+                                                justify-between gap-2 mb-4"
+                                        >
+                                            <div>
+                                                <h3 className="text-2xl font-bold tracking-tight">Web Programmer</h3>
+                                                <p 
+                                                    className="text-primary font-bold text-sm 
+                                                        tracking-widest uppercase mt-1"
+                                                >PT. SARANDI KARYA NUGRAHA</p>
+                                            </div>
+                                            <div 
+                                                className="px-4 py-1.5 bg-primary/10 border 
+                                                    border-primary/20 rounded-full"
+                                            >
+                                                <span 
+                                                    className="text-xs font-bold text-primary"
+                                                >2018 — Present</span>
+                                            </div>
+                                        </div>
+                                        <p className="text-gray-400 leading-relaxed text-base">
+                                            Responsible for developing, maintaining, and troubleshooting 
+                                            web applications using the PHP ecosystem. My focus is on keeping 
+                                            systems running smoothly, fixing bugs quickly, and writing clean code that 
+                                            performs well.
+                                        </p>
+                                    </motion.div>
+                                </div>
                             </div>
                         </div>
                     </motion.div>

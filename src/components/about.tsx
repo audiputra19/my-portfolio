@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import Laptop from '../assets/images/Laptop.png'
+import Laptop from '../assets/images/laptop.png'
 import { FaReact, FaNodeJs, FaPhp, FaDocker } from "react-icons/fa";
 import { SiTypescript, SiMysql, SiRedux, SiSocketdotio, SiTailwindcss, SiExpress } from "react-icons/si";
 
@@ -85,7 +85,7 @@ const About: FC = () => {
                 id="about" 
                 className="relative mt-10 lg:mt-35 bg-base-100 overflow-hidden"
             >
-                <div className="py-24 px-10 sm:px-20">
+                <div className="py-24 px-5 sm:px-10 md:px-20">
 
                     {/* BACKGROUND */}
                     <motion.div 
@@ -161,7 +161,7 @@ const About: FC = () => {
                             <div className="h-1 w-20 bg-primary rounded-full opacity-50"></div>
                         </motion.h2>
 
-                        <div className="mt-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                             {skills.map((skill) => (
                                 <motion.div 
                                     key={skill.title}
@@ -208,7 +208,7 @@ const About: FC = () => {
                                                     hover:shadow-[0_0_20px_rgba(59,130,246,0.15)]"
                                                 >
                                                 <span className="text-2xl transition-transform duration-500 group-hover/item:scale-125 group-hover/item:rotate-12">{tech.icon}</span>
-                                                <span className="text-sm font-medium">{tech.name}</span>
+                                                <span className="text-sm font-bold">{tech.name}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -229,7 +229,7 @@ const About: FC = () => {
                                                 >
                                                     {tech.icon}
                                                 </span>
-                                                <span className="text-sm font-medium">{tech.name}</span>
+                                                <span className="text-sm font-bold">{tech.name}</span>
                                             </div>
                                         ))}
                                     </div>

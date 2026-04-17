@@ -81,7 +81,7 @@ const Project: FC = () => {
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-warning/5 blur-[120px] rounded-full"></div>
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/5 blur-[120px] rounded-full"></div>
 
-            <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div className="mx-auto px-5 sm:px-10 md:px-20 relative z-10">
                 
                 {/* HEADER SECTION */}
                 <motion.div 

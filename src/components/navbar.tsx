@@ -25,7 +25,7 @@ const Navbar: FC = () => {
                 ? "bg-base-100/80 backdrop-blur-md shadow-lg" 
                 : "bg-transparent py-2"}`}
         >
-            <div className="mx-10 sm:mx-20">
+            <div className="mx-5 sm:mx-10 md:mx-20">
                 <div className="navbar">
                     <div className="navbar-start">
                         <a className="text-xl font-black cursor-pointer">Audi Putra</a>

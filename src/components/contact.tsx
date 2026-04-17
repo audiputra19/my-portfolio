@@ -63,7 +63,7 @@ const Contact: FC = () => {
                 h-[500px] bg-warning/5 blur-[150px] rounded-full"
             ></div>
 
-            <div className="max-w-6xl mx-auto px-6 relative z-10">
+            <div className="mx-auto px-5 sm:px-10 md:px-20 relative z-10">
                 <motion.div 
                     variants={container}
                     initial="hidden"

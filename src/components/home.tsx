@@ -2,6 +2,7 @@ import type { FC } from "react";
 import { motion } from "framer-motion";
 import Profile from '../assets/images/profile-picture.png'
 import { scrollToSection } from "../utils/scroll";
+import myCV from '../assets/files/cv-audi-putra.pdf';
 
 const Home: FC = () => {
 
@@ -27,7 +28,7 @@ const Home: FC = () => {
         <>
             <section 
                 id="home" 
-                className="min-h-[85vh] flex items-center mt-5 pt-5 px-10 lg:px-20 overflow-hidden"
+                className="min-h-[85vh] flex items-center mt-5 pt-5 px-5 sm:px-10 md:px-20 overflow-hidden"
             >
                 <motion.div 
                     className="flex-col lg:flex lg:flex-row lg:justify-between items-center w-full"
@@ -113,12 +114,14 @@ const Home: FC = () => {
                                 >
                                     Contact Me
                                 </button>
-                                <button 
+                                <a 
+                                    href={myCV}
+                                    download="CV_Audi_Putra.pdf"
                                     className="btn btn-outline btn-primary transition-all 
                                         duration-300 hover:scale-105"
                                 >
                                     Download CV
-                                </button>
+                                </a>
                             </motion.div>
                         </div>
                     </div>
